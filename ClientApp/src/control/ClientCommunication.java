@@ -99,79 +99,91 @@ public class ClientCommunication{
 
     		//サーバ接続時
     		case CLTOCLM:
-    			communicationFormat = encode(CONNECT, ProcessID.CLTOAP.toString());
+    			communicationFormat = encode(CONNECT, processID.toString());
     			break;
 
     		case CLTOAP:
-    			communicationFormat = encode(CONNECT, ProcessID.CLTOAP.toString(),control.getMyPlayer().getId());
+    			communicationFormat = encode(CONNECT, processID.toString(),control.getMyPlayer().getId());
     			break;
 
     		case CONNECTAP_OK:
-    			communicationFormat = encode(REPLY, ProcessID.CONNECTAP_OK.toString());
+    			communicationFormat = encode(REPLY, processID.toString());
     			break;
 
     		//ログイン時
     		case LOGIN:
-	    		communicationFormat = encode(REQUEST, "LOGIN", data);
+	    		communicationFormat = encode(REQUEST, processID.toString(), data);
 	    		break;
 
 	    	//新規登録時
 	    	case REGISTER:
-	    		communicationFormat = encode(REQUEST, "REGISTER", data);
+	    		communicationFormat = encode(REQUEST, processID.toString(), data);
 	    		break;
 
 	    	//ロビー遷移要求
 	    	case MAKELOBBY:
-	    		communicationFormat = encode(REQUEST, "MAKELOBBY", data);
+	    		communicationFormat = encode(REQUEST, processID.toString(), data);
 	    		break;
 
 	    	//マッチ参加要求
 	    	case JOIN:
-	    		communicationFormat = encode(REQUEST, "JOIN", control.getMyPlayer().getId());
+	    		communicationFormat = encode(REQUEST, processID.toString(), control.getMyPlayer().getId());
 	    		break;
 
+
+
+	    	/*
 	    	//座標
 	    	case STROKE:
+	    		//POSITIONのほうを使うから多分使わない
 	    		communicationFormat = encode(POSITION, control.getGameInfo().getRoomID(),data);
 	    		break;
 
 	    	//ゲームからロビーに戻る
 	    	case BACKTOLOBBY:
+	    		//多分使わない
 	    		communicationFormat = encode(REQUEST,"");
 	    		break;
 
+
+
 	    	//時間経過を通知
 	    	case TIMEOVER:
-	    		communicationFormat = encode(REQUEST,"TIMEOVER",data);
+	    		//多分使わない
+	    		communicationFormat = encode(REQUEST,processID.toString(),data);
 	    		break;
 
 	    	//画面遷移等の通知系
 	    	case CHANGE:
+	    		//多分使わない
 	    		communicationFormat = encode(REPLY, "");
 	    		break;
+	    	*/
+
+
 
 	    	case LOGOUT:
-	    		communicationFormat = encode(REQUEST,"LOGOUT",control.getMyPlayer().getId());
+	    		communicationFormat = encode(REQUEST,processID.toString(),control.getMyPlayer().getId());
 	    		break;
 
 	    	case STARTGAME_OK:
-	    		communicationFormat = encode(REPLY, "STARTGAME_OK");
+	    		communicationFormat = encode(REPLY, processID.toString());
 	    		break;
 
 	    	case STARTTURN_OK:
-	    		communicationFormat = encode(REPLY, "STARTTURN_OK");
+	    		communicationFormat = encode(REPLY, processID.toString());
 	    		break;
 
 	    	case QTIMESTART_OK:
-	    		communicationFormat = encode(REPLY, "QTIMESTART_OK");
+	    		communicationFormat = encode(REPLY, processID.toString());
 	    		break;
 
 	    	case ANSWER:
-	    		communicationFormat = encode(REQUEST, "ANSWERE");
+	    		communicationFormat = encode(REQUEST, processID.toString());
 	    		break;
 
 	    	case ANSWER_OK:
-	    		communicationFormat = encode(REQUEST, "ANSWER_OK");
+	    		communicationFormat = encode(REQUEST, processID.toString());
 	    		break;
 
 	    	case POSITION:
@@ -179,15 +191,15 @@ public class ClientCommunication{
 	    		break;
 
 	    	case TURNRESULT_OK:
-	    		communicationFormat = encode(REPLY, "TURNRESULT_OK");
+	    		communicationFormat = encode(REPLY, processID.toString());
 	    		break;
 
 	    	case FINISHGAME_OK:
-	    		communicationFormat = encode(REPLY, "FINISHGAME_OK");
+	    		communicationFormat = encode(REPLY, processID.toString());
 	    		break;
 
 	    	case TIMEOUT_OK:
-	    		communicationFormat = encode(REPLY, "TIMEOUT_OK");
+	    		communicationFormat = encode(REPLY, processID.toString());
 	    		break;
 
 	    	default:
